@@ -1,0 +1,10 @@
+This is a python/pytest learning micro project, aimed to exercise
+python and pytest.
+
+Folder structure:
+src: Production code.
+tests: Tests that exercise the production code.
+
+To run the tests:
+export PYTHONPATH=<PATH-TO-PROJECT>/src
+pytest tests
