@@ -17,36 +17,46 @@
 # Refer to the README and COPYING files for full details of the license
 #
 import time
-from datetime import date
+import datetime
 
 class Cactus(object):
 
-    def __init__(self, kind, watering):
+    def __init__(self, kind):
         self._kind = kind
-        self._watering = watering
         self._is_succulent = True
         self._is_plant_dry = True
-        self._is_plant_humid = True
+        self._is_plant_humid = False
+        self._is_watering_time = 0
+        self._is_potter = 0
+        self._is_need_sun = True
+
 
     def is_succulent(self):
         return self._is_succulent
 
+    def watering(self):
+        self._is_watering_time = time.time()
+        print self._is_watering_time
+
     def need_to_water(self):
-        watering_time = date(2018, 1, 20)
-        localtime = time.localtime(time.time())
-        print localtime
-        delta_time = watering_time - localtime
-        print delta_time
-        if delta_time >= '7':
-            return self._is_plant_humid
-        else:
-            return self._is_plant_dry
+        current_time = time.time()
+        print current_time
+        delta_time = current_time - self._is_watering_time
+      # more optimated way to write "if" :if delta_time <= 7777: return False else : return True
+        return delta_time > 7777
 
-    def is_plant_dry(self):
-        return self._is_plant_dry
+    def is_need_large_potter(self):
+        current_potter = time.time()
+        delta_potter = current_potter - self._is_potter
+        #if passed more than X time from the biginning move to large potter
+        return delta_potter >= 88888
 
-    def is_plant_humid(self):
-        return self._is_plant_humid
+    def move_to_large_potter(self):
+        self._is_potter = time.time() # current time
 
+    def is_need_sun(self):
+        return self._is_need_sun
 
+    def move_to_shadow(self):#if cactus should not be on the sun , move them to shadow
+        self._is_need_sun = False
 
